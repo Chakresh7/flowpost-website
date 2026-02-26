@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Sparkles, Send, TrendingUp, ShoppingBag } from "lucide-react";
 
+const ease = [0.25, 0.1, 0.25, 1] as const;
+
 const features = [
   {
     icon: Sparkles,
@@ -29,10 +31,10 @@ const Features = () => {
     <section id="features" className="py-24 md:py-32 px-6 bg-secondary">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease }}
           className="max-w-xl mb-16"
         >
           <p className="text-sm font-medium text-muted-foreground tracking-wide uppercase mb-4">
@@ -47,13 +49,16 @@ const Features = () => {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="bg-background rounded-xl border border-border p-8 hover:border-accent transition-colors duration-300"
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease }}
+              className="group bg-background rounded-xl border border-border p-8 transition-all duration-300 hover:border-accent hover:shadow-sm"
             >
-              <feature.icon className="w-5 h-5 text-muted-foreground mb-5" strokeWidth={1.5} />
+              <feature.icon
+                className="w-5 h-5 text-muted-foreground mb-5 transition-all duration-500 group-hover:text-foreground group-hover:translate-y-[-2px]"
+                strokeWidth={1.5}
+              />
               <h3 className="text-lg font-medium text-foreground mb-2">{feature.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
             </motion.div>
